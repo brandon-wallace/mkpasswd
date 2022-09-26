@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Online random password generator.">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" media="screen,tv" href="css/style.css">
+    <title>mkpasswd.tk</title>
+
+  </head>
+
+  <body>
+  
+    <noscript>
+      <div style="color:#FC0000;background-color:#FFFFFF;text-align:center">
+        <p>Warning! It seems that JavaScript is not working in your browser. It could be that JavaScript is not supported, or JavaScript is disabled.</p>
+        <p>Please enable JavaScript. Some of the features on this website will not function properly with out javascript enabled.</p>
+      </div>
+    </noscript>
+    
+    <!-- START header -->
+
+    <header>
+
+      <!--
+      <h1>MKPASSWD.tk</h1>
+      -->
+
+      <img class="header-logo" src="images/logo4_1000.png" alt="password generator logo PNG">
+
+    </header>
+
+    <!-- END header -->
+
+    <!-- START main -->
+
+    <main>
+
+      <div id="random-password">
+
+        <input type="text" class="password" id="password" focus> <button class="copy-btn" id="copy">Copy</button>
+
+        <form id="settings">
+
+          <label for="lowercase"><input type="checkbox" name="lowercase" id="lowercase" checked>Lowercase</label>
+          <label for="uppercase"><input type="checkbox" name="uppercase" id="uppercase" checked>Uppercase</label>
+          <label for="numbers"><input type="checkbox" id="numbers" checked>Numbers</label>
+          <label for="symbols"><input type="checkbox" id="symbols" checked>Symbols</label>
+          <div class="passwd-length">
+            <input type="range" class="passwd-length-input" name="slider" min="8" max="32" step="1" value="8">
+            <span class="passwd-length-output">8</span>
+          </div>
+
+          <button type="button" class="generate-btn" id="generate">Generate Password</button>
+
+        </form>
+
+      </div>
+  
+    </main>
+
+    <!-- END main -->
+
+    <!-- START footer -->
+
+    <footer>
+
+      <div class="diagonal">
+      </div>
+
+      <p><a href="https://brandonwallace.cc" target="_blank" rel="nonreferrer">Brandon Wallace</a> &copy; <script>document.write(new Date().getFullYear());</script></p>
+
+    </footer>
+
+    <!-- END footer -->
+
+    <script src="js/script.js"></script>
+
+  </body>
+
+</html>
