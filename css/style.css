@@ -66,7 +66,15 @@ a {
 }
 
 header {
-    padding: 1em 2em 0 2em;
+    padding: 1em 1em 0 1em;
+}
+
+.header-title {
+    color: purple;
+    margin: 0 auto;
+    max-width: 1000px;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 main {
@@ -106,7 +114,9 @@ input {
 
 label {
     display: block;
+    color: #333333;
     font-size: 2rem;
+    font-weight: bold;
     line-height: 20px;
     padding-left: 50px;
     vertical-align: middle;
@@ -130,16 +140,6 @@ input[type="number"] {
     top: 0;
     left: 0;
 }
-
-/*
-input[type="range"]::-webkit-slider-runnable-track {
-    background: red;
-}
-
-input[type="range"]::-moz-range-track {
-    background: red;
-}
-*/
 
 .passwd-length {
     display: flex;
@@ -192,10 +192,12 @@ button {
 }
 
 .copy-btn {
+    border-radius: 24px;
     background-color: green;
 }
 
 .generate-btn {
+    border-radius: 24px;
     background-color: blue;
 }
 
@@ -211,14 +213,6 @@ footer {
     margin-top: auto;
     background-color: purple;
     position: relative;
-}
-
-.footer-image {
-    position: absolute;
-    top: -250px;
-    left: 0;
-    right: 0;
-    max-width: 90%;
 }
 
 footer p {
