@@ -90,7 +90,18 @@ img {
     margin: 0 auto;
 }
 
+.row {
+    flex: 2;
+    min-height: 80px;
+    position: relative;
+}
+
 .header-logo {
+    z-index: 9999;
+    bottom: -90px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(2deg);
+    position: absolute;
     max-width: 1000px;
 }
 
@@ -202,8 +213,9 @@ button {
 }
 
 .diagonal {
-    height: 50px;
+    z-index: -1;
     width: 100%;
+    height: 50px;
     background-image: linear-gradient(to top left, #800080 49.9%, yellow 50.1%);
 }
 
