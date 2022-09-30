@@ -71,9 +71,9 @@ img {
     position: relative;
 }
 
-.header-logo {
+.page-image {
     z-index: 9999;
-    bottom: -90px;
+    bottom: -35px;
     left: 50%;
     -webkit-transform: translate(-50%, -50%) rotate(2deg);
         -ms-transform: translate(-50%, -50%) rotate(2deg);
