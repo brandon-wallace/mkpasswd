@@ -9,7 +9,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 html {
@@ -63,7 +64,9 @@ img {
 }
 
 .row {
-    flex: 2;
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
     min-height: 80px;
     position: relative;
 }
@@ -72,7 +75,9 @@ img {
     z-index: 9999;
     bottom: -90px;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(2deg);
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+        -ms-transform: translate(-50%, -50%) rotate(2deg);
+            transform: translate(-50%, -50%) rotate(2deg);
     position: absolute;
     max-width: 1000px;
 }
@@ -113,7 +118,9 @@ label:last-of-type {
 
 input[type="checkbox"] {
     height: 20px;
-    transform: scale(2);
+    -webkit-transform: scale(2);
+        -ms-transform: scale(2);
+            transform: scale(2);
     margin-right: 11px;
     position: absolute;
     top: 0;
@@ -129,6 +136,8 @@ input[type="number"] {
 }
 
 .passwd-length {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -153,10 +162,13 @@ input[type="number"] {
     text-align: center;
     letter-spacing: 2px;
     font-family: inherit;
-    text-overflow: ellipsis; 
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis; 
     margin: 0 auto .5em auto;
     border: 6px solid;
-    border-image: linear-gradient(90deg, purple, red) 10;
+    -o-border-image: -o-linear-gradient(left, purple, red) 10;
+       border-image: -webkit-gradient(linear, left top, right top, from(purple), to(red)) 10;
+       border-image: linear-gradient(90deg, purple, red) 10;
 }
 
 button {
@@ -195,6 +207,8 @@ button {
     z-index: -1;
     width: 100%;
     height: 50px;
+    background-image: -webkit-gradient(linear, right bottom, left top, color-stop(49.9%, #800080), color-stop(50.1%, yellow));
+    background-image: -o-linear-gradient(bottom right, #800080 49.9%, yellow 50.1%);
     background-image: linear-gradient(to top left, #800080 49.9%, yellow 50.1%);
 }
 
