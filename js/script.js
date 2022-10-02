@@ -1,57 +1,69 @@
-const passwordText = document.getElementById("password");
 const includeLowercase = document.getElementById("lowercase");
 const includeUppercase = document.getElementById("uppercase");
 const includeSymbols = document.getElementById("symbols");
-const length = document.getElementById("length");
 const includeNumbers = document.getElementById("numbers");
 const generateBtn = document.getElementById("generate");
-let oldSlider = "";
+const sliderInput = document.querySelector(".passwd-length-input")
+const sliderOutput = document.querySelector(".passwd-length-output")
+const copyBtn = document.getElementById("copy");
+
+const shuffle = (chars) => {
+    let charArray = chars.split('');
+    let charLength = charArray.length;
+
+    for (let i = 0; i < charLength-1; i++) {
+        let ch = Math.floor(Math.random() * charLength)
+        let temp = charArray[i];
+        charArray[i] = charArray[ch];
+        charArray[ch] = temp;
+    }
+    chars = charArray.join('');
+    return chars;
+}
 
 generateBtn.addEventListener("click", () => {
     const lowercase = "abcdefghijklmnopqrstuvwxyz"
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const numbers = "0123456789";
-    const symbols = "\\/!@#$%^&*_-+=\"";
+    const symbols = "\\/!@#$%(^&{*_-<+[=\">]})";
     let characters = "";
-    if (includeLowercase.checked === false && includeUppercase.checked === false &&
-        includeNumbers.checked === false && includeSymbols.checked === false) {
-        alert("Select at least one option.");
+    if (includeLowercase.checked === false && 
+        includeUppercase.checked === false &&
+        includeNumbers.checked === false && 
+        includeSymbols.checked === false) {
         return;
     }
     includeLowercase.checked ? (characters += lowercase) : "";
     includeUppercase.checked ? (characters += uppercase) : "";
     includeNumbers.checked ? (characters += numbers) : "";
     includeSymbols.checked ? (characters += symbols) : "";
-    passwordText.value = generatePassword(slider.value, characters);
+    document.getElementById("password").value = generatePassword(sliderInput.value, characters);
 });
 
 const generatePassword = (length, characters) => {
     let password = "";
+    shuffledCharacters = shuffle(characters);
     for (let i = 0; i < length; i++) {
-        password += characters.charAt(
+        password += shuffledCharacters.charAt(
             Math.floor(Math.random() * characters.length)
         );
     }
     return password;
 };
 
-const slider = document.querySelector(".passwd-length-input")
-const output = document.querySelector(".passwd-length-output")
+sliderOutput.textContent = sliderInput.value;
 
-output.textContent = slider.value;
-
-slider.addEventListener("mousemove", () => {
-    output.textContent = slider.value;
+sliderInput.addEventListener("mousemove", () => {
+    sliderOutput.textContent = sliderInput.value;
 });
 
-slider.addEventListener("touchstart", () => {
-    output.textContent = slider.value;
+sliderInput.addEventListener("touchstart", () => {
+    sliderOutput.textContent = sliderInput.value;
 });
-slider.addEventListener("touchstart", () => {
-    output.textContent = slider.value;
+sliderInput.addEventListener("touchstart", () => {
+    sliderOutput.textContent = sliderInput.value;
 });
 
-const copyBtn = document.getElementById("copy");
 copyBtn.addEventListener("click", () => {
     passwordText.select();
     document.execCommand("copy");
