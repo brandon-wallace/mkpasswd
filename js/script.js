@@ -5,7 +5,9 @@ const includeNumbers = document.getElementById("numbers");
 const generateBtn = document.getElementById("generate");
 const sliderInput = document.querySelector(".passwd-length-input")
 const sliderOutput = document.querySelector(".passwd-length-output")
+const passwordText = document.getElementById("password");
 const copyBtn = document.getElementById("copy");
+const copySVGBtn = document.querySelector(".copy-svg-btn");
 
 const shuffle = (chars) => {
     let charArray = chars.split('');
@@ -21,7 +23,7 @@ const shuffle = (chars) => {
     return chars;
 }
 
-generateBtn.addEventListener("click", () => {
+const getInput = () => {
     const lowercase = "abcdefghijklmnopqrstuvwxyz"
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const numbers = "0123456789";
@@ -38,6 +40,10 @@ generateBtn.addEventListener("click", () => {
     includeNumbers.checked ? (characters += numbers) : "";
     includeSymbols.checked ? (characters += symbols) : "";
     document.getElementById("password").value = generatePassword(sliderInput.value, characters);
+}
+
+generateBtn.addEventListener("click", () => {
+    getInput();
 });
 
 const generatePassword = (length, characters) => {
@@ -50,6 +56,8 @@ const generatePassword = (length, characters) => {
     }
     return password;
 };
+
+window.addEventListener("load", getInput)
 
 sliderOutput.textContent = sliderInput.value;
 
@@ -66,5 +74,12 @@ sliderInput.addEventListener("touchstart", () => {
 
 copyBtn.addEventListener("click", () => {
     passwordText.select();
-    document.execCommand("copy");
+    passwordText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(passwordText.value);
+});
+
+copySVGBtn.addEventListener("click", () => {
+    passwordText.select();
+    passwordText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(passwordText.value);
 });
