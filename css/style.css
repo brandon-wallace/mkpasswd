@@ -113,7 +113,7 @@ input {
 
 label {
     display: block;
-    color: #333333;
+    color: purple;
     font-size: 2rem;
     font-weight: bold;
     line-height: 20px;
@@ -150,12 +150,13 @@ input[type="number"] {
 }
 
 .copy-svg-btn {
-    width: 95px;
-    height: 70px;
+    width: 100px;
+    height: 90px;
     cursor: pointer;
     background-image: url('../images/copy-btn.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .passwd-length {
@@ -171,6 +172,7 @@ input[type="number"] {
 
 .passwd-length-output {
     width: 65px;
+    color: purple;
     display: block;
     font-size: 2rem;
     text-align: center;
@@ -189,6 +191,7 @@ input[type="number"] {
     border: 0;
     width: 100%;
     padding: 1rem;
+    color: purple;
     font-size: 2.5rem;
     font-weight: bold;
     overflow: hidden;
