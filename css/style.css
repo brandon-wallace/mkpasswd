@@ -29,6 +29,7 @@ body {
     font-weight: 400;
     line-height: 1.75;
     min-height: 100vh;
+    overflow-x: hidden;
     background-color: yellow;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -76,14 +77,15 @@ img {
 }
 
 .page-image {
+    left: 50%;
     z-index: 9999;
     bottom: -50px;
-    left: 50%;
+    min-width: 600px;
+    max-width: 1000px;
+    position: absolute;
     -webkit-transform: translate(-50%, -50%) rotate(2deg);
         -ms-transform: translate(-50%, -50%) rotate(2deg);
             transform: translate(-50%, -50%) rotate(2deg);
-    position: absolute;
-    max-width: 1000px;
 }
 
 .copy-btn-box {
@@ -92,17 +94,17 @@ img {
 }
 
 form {
-    max-width: 425px;
     width: 100%;
     margin: 0 auto;
+    max-width: 425px;
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 li {
-  margin-bottom: .5em;
+    margin-bottom: .5em;
 }
 
 input {
@@ -116,7 +118,6 @@ label {
     font-weight: bold;
     line-height: 20px;
     padding-left: 50px;
-    /* vertical-align: middle; */
     position: relative;
     margin-bottom: 1em;
 }
@@ -126,22 +127,26 @@ label:last-of-type {
 }
 
 input[type="checkbox"] {
+    top: 0;
+    left: 8px;
     height: 20px;
     -webkit-transform: scale(2);
         -ms-transform: scale(2);
             transform: scale(2);
     margin-right: 11px;
     position: absolute;
-    top: 0;
-    left: 8px;
+}
+
+input:checked {
+    accent-color: purple;
 }
 
 input[type="number"] {
+    top: 0;
+    left: 0;
     height: 40px;
     font-size: 2rem;
     position: absolute;
-    top: 0;
-    left: 0;
 }
 
 .copy-svg-btn {
@@ -161,6 +166,7 @@ input[type="number"] {
 
 .passwd-length-input {
     width: 100%;
+    accent-color: purple;
 }
 
 .passwd-length-output {
@@ -175,9 +181,7 @@ input[type="number"] {
     border: 6px solid;
     max-width: 1000px;
     background-color: #FFFFFF;
-    -o-border-image: -o-linear-gradient(left, purple, red) 10;
-       border-image: -webkit-gradient(linear, left top, right top, from(purple), to(red)) 10;
-       border-image: linear-gradient(90deg, purple, red) 10;
+    border: 6px solid purple;
     margin: 0 auto .5em auto;
 }
 
@@ -251,10 +255,11 @@ footer {
 
 footer p {
     color: #FFFFFF;
+    font-weight: bold;
     text-align: center;
     line-height: 150px;
-    text-transform: uppercase;
     letter-spacing: 2.2px;
+    text-transform: uppercase;
 } 
 
 footer p a {
