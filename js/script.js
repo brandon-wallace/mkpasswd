@@ -1,3 +1,4 @@
+// script.js
 const includeLowercase = document.getElementById("lowercase");
 const includeUppercase = document.getElementById("uppercase");
 const includeSymbols = document.getElementById("symbols");
