@@ -8,7 +8,7 @@
 * CSS
 * Javascript
 
-[mkpasswd.tk](https://mkpasswd.tk)
+[mkpasswd.surge.sh](https://mkpasswd.surge.sh)
 
 ![screenshot1](screenshot1.png)
 
