@@ -1,8 +1,8 @@
 // script.js
-const includeLowercase = document.getElementById("lowercase");
-const includeUppercase = document.getElementById("uppercase");
-const includeSymbols = document.getElementById("symbols");
-const includeNumbers = document.getElementById("numbers");
+const lowercaseChars = document.getElementById("lowercase");
+const uppercaseChars = document.getElementById("uppercase");
+const symbolChars = document.getElementById("symbols");
+const numberChars = document.getElementById("numbers");
 const generateBtn = document.getElementById("generate");
 const sliderInput = document.querySelector(".passwd-length-input")
 const sliderOutput = document.querySelector(".passwd-length-output")
@@ -10,53 +10,58 @@ const passwordText = document.getElementById("password");
 const copyBtn = document.getElementById("copy");
 const copySVGBtn = document.querySelector(".copy-svg-btn");
 
-const shuffle = (chars) => {
-    let charArray = chars.split('');
-    let charLength = charArray.length;
 
-    for (let i = 0; i < charLength-1; i++) {
-        let ch = Math.floor(Math.random() * charLength)
-        let temp = charArray[i];
-        charArray[i] = charArray[ch];
-        charArray[ch] = temp;
-    }
-    chars = charArray.join('');
-    return chars;
-}
-
+// getInput gets input from the user.
 const getInput = () => {
     const lowercase = "abcdefghijklmnopqrstuvwxyz"
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const numbers = "0123456789";
-    const symbols = "\\/!@#$%(^&{*_-<+[=\">]})";
+    const symbols = "@#$%!&*?._-+=";
     let characters = "";
-    if (includeLowercase.checked === false && 
-        includeUppercase.checked === false &&
-        includeNumbers.checked === false && 
-        includeSymbols.checked === false) {
+
+    if (lowercaseChars.checked === false && uppercaseChars.checked === false && numberChars.checked === false && symbolChars.checked === false) {
         return;
     }
-    includeLowercase.checked ? (characters += lowercase) : "";
-    includeUppercase.checked ? (characters += uppercase) : "";
-    includeNumbers.checked ? (characters += numbers) : "";
-    includeSymbols.checked ? (characters += symbols) : "";
+
+    lowercaseChars.checked ? (characters += lowercase) : "";
+    uppercaseChars.checked ? (characters += uppercase) : "";
+    numberChars.checked ? (characters += numbers) : "";
+    symbolChars.checked ? (characters += symbols) : "";
+
     document.getElementById("password").value = generatePassword(sliderInput.value, characters);
+}
+
+// hasDuplicateAdjacentCharacters checks if the current character is the same as the next.
+const hasDuplicateAdjacentCharacters = (string) => {
+    for (let i = 0; i < string.length - 1; i++) {
+        if (string[i] === string[i + 1]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// generatePassword generates a random password of a specified length.
+const generatePassword = (length, characters) => {
+    let password = "";
+
+    for (let i = 0; i < length; i++) {
+        let randomNumber = crypto.getRandomValues(new Uint32Array(1))[0];
+        randomNumber = Math.floor(randomNumber / 0x100000000 * characters.length);
+        password += characters[randomNumber];
+    }
+
+    if (hasDuplicateAdjacentCharacters(password)) {
+        password = generatePassword(length, characters);
+    }
+
+    return password;
 }
 
 generateBtn.addEventListener("click", () => {
     getInput();
 });
-
-const generatePassword = (length, characters) => {
-    let password = "";
-    shuffledCharacters = shuffle(characters);
-    for (let i = 0; i < length; i++) {
-        password += shuffledCharacters.charAt(
-            Math.floor(Math.random() * characters.length)
-        );
-    }
-    return password;
-};
 
 window.addEventListener("load", getInput)
 
