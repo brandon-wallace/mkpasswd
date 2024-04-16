@@ -4,22 +4,26 @@ const uppercaseChars = document.getElementById("uppercase");
 const symbolChars = document.getElementById("symbols");
 const numberChars = document.getElementById("numbers");
 const generateBtn = document.getElementById("generate");
-const sliderInput = document.querySelector(".passwd-length-input")
-const sliderOutput = document.querySelector(".passwd-length-output")
+const sliderInput = document.querySelector(".passwd-length-input");
+const sliderOutput = document.querySelector(".passwd-length-output");
 const passwordText = document.getElementById("password");
 const copyBtn = document.getElementById("copy");
 const copySVGBtn = document.querySelector(".copy-svg-btn");
 
-
 // getInput gets input from the user.
 const getInput = () => {
-    const lowercase = "abcdefghijklmnopqrstuvwxyz"
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const numbers = "0123456789";
     const symbols = "@#$%!&*?._-+=";
     let characters = "";
 
-    if (lowercaseChars.checked === false && uppercaseChars.checked === false && numberChars.checked === false && symbolChars.checked === false) {
+    if (
+        lowercaseChars.checked === false &&
+        uppercaseChars.checked === false &&
+        numberChars.checked === false &&
+        symbolChars.checked === false
+    ) {
         return;
     }
 
@@ -28,8 +32,11 @@ const getInput = () => {
     numberChars.checked ? (characters += numbers) : "";
     symbolChars.checked ? (characters += symbols) : "";
 
-    document.getElementById("password").value = generatePassword(sliderInput.value, characters);
-}
+    document.getElementById("password").value = generatePassword(
+        sliderInput.value,
+        characters,
+    );
+};
 
 // hasDuplicateAdjacentCharacters checks if the current character is the same as the next.
 const hasDuplicateAdjacentCharacters = (string) => {
@@ -40,7 +47,7 @@ const hasDuplicateAdjacentCharacters = (string) => {
     }
 
     return false;
-}
+};
 
 // generatePassword generates a random password of a specified length.
 const generatePassword = (length, characters) => {
@@ -48,7 +55,9 @@ const generatePassword = (length, characters) => {
 
     for (let i = 0; i < length; i++) {
         let randomNumber = crypto.getRandomValues(new Uint32Array(1))[0];
-        randomNumber = Math.floor(randomNumber / 0x100000000 * characters.length);
+        randomNumber = Math.floor(
+            (randomNumber / 0x100000000) * characters.length,
+        );
         password += characters[randomNumber];
     }
 
@@ -57,13 +66,13 @@ const generatePassword = (length, characters) => {
     }
 
     return password;
-}
+};
 
 generateBtn.addEventListener("click", () => {
     getInput();
 });
 
-window.addEventListener("load", getInput)
+window.addEventListener("load", getInput);
 
 sliderOutput.textContent = sliderInput.value;
 
