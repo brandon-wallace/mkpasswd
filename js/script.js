@@ -10,6 +10,13 @@ const passwordText = document.getElementById("password");
 const copyBtn = document.getElementById("copy");
 const copySVGBtn = document.querySelector(".copy-svg-btn");
 
+const character_sets = {
+    lowercase: "abcdefghijklmnopqrstuvwxyz",
+    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    numbers: "0123456789",
+    symbols: "@#$%!&*?._-+="
+};
+
 // getInput gets input from the user.
 const getInput = () => {
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -33,10 +40,7 @@ const getInput = () => {
     numberChars.checked ? (characters += numbers) : "";
     symbolChars.checked ? (characters += symbols) : "";
 
-    document.getElementById("password").value = generatePassword(
-        sliderInput.value,
-        characters,
-    );
+    document.getElementById("password").value = generatePassword(sliderInput.value, characters);
 };
 
 // hasDuplicateAdjacentCharacters checks if the current character is the same as the next.
