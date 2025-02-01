@@ -270,3 +270,31 @@ footer p a {
     color: #FFFFFF;
     letter-spacing: 2.2px;
 }
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 5px;
+    background-color: purple;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.notification.visible {
+    opacity: 1;
+}
+
+.notification.hidden {
+    opacity: 0;
+    pointer-events: none; 
+}
+

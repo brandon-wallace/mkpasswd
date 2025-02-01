@@ -24,6 +24,7 @@ const getInput = () => {
         numberChars.checked === false &&
         symbolChars.checked === false
     ) {
+        showNotification("Please select one character set.");
         return;
     }
 
@@ -68,33 +69,53 @@ const generatePassword = (length, characters) => {
     return password;
 };
 
+// updateSliderOutput updates the value of the slider.
+const updateSliderOutput = () => {
+    sliderOutput.textContent = sliderInput.value;
+}
+
+// showNotification displays a notification for a specified duration.
+const showNotification = (message, duration = 2500) => {
+    const notification = document.getElementById("notification");
+    const notificationMessage = document.getElementById("notification-message");
+    notificationMessage.textContent = message;
+
+    notification.classList.remove("hidden");
+    notification.classList.add("visible");
+
+    setTimeout(() => {
+        notification.classList.remove("visible");
+        notification.classList.add("hidden");
+    }, duration);
+}
+
 generateBtn.addEventListener("click", () => {
     getInput();
 });
 
-window.addEventListener("load", getInput);
-
-sliderOutput.textContent = sliderInput.value;
+window.addEventListener("load", () => {
+    document.getElementById("password").value = generatePassword(sliderInput.value, Object.entries(character_sets).map(([k, v]) => `${v}`).join(''));
+    updateSliderOutput();
+});
 
 sliderInput.addEventListener("mousemove", () => {
     sliderOutput.textContent = sliderInput.value;
 });
 
-sliderInput.addEventListener("touchstart", () => {
-    sliderOutput.textContent = sliderInput.value;
-});
-sliderInput.addEventListener("touchstart", () => {
-    sliderOutput.textContent = sliderInput.value;
-});
+sliderInput.addEventListener("input", updateSliderOutput);
 
 copyBtn.addEventListener("click", () => {
     passwordText.select();
     passwordText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(passwordText.value);
+    navigator.clipboard.writeText(passwordText.value).then(() => {
+        showNotification("copied");
+    });
 });
 
 copySVGBtn.addEventListener("click", () => {
     passwordText.select();
     passwordText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(passwordText.value);
+    navigator.clipboard.writeText(passwordText.value).then(() => {
+        showNotification("copied");
+    });
 });
