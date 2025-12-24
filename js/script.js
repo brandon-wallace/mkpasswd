@@ -1,4 +1,5 @@
 // script.js
+
 const lowercaseChars = document.getElementById("lowercase");
 const uppercaseChars = document.getElementById("uppercase");
 const symbolChars = document.getElementById("symbols");
@@ -10,7 +11,7 @@ const passwordText = document.getElementById("password");
 const copyBtn = document.getElementById("copy");
 const copySVGBtn = document.querySelector(".copy-svg-btn");
 
-const character_sets = {
+const characterSets = {
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numbers: "0123456789",
@@ -19,10 +20,6 @@ const character_sets = {
 
 // getInput gets input from the user.
 const getInput = () => {
-    const lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numbers = "0123456789";
-    const symbols = "@#$%!&*?._-+=";
     let characters = "";
 
     if (
@@ -35,23 +32,12 @@ const getInput = () => {
         return;
     }
 
-    lowercaseChars.checked ? (characters += lowercase) : "";
-    uppercaseChars.checked ? (characters += uppercase) : "";
-    numberChars.checked ? (characters += numbers) : "";
-    symbolChars.checked ? (characters += symbols) : "";
+    lowercaseChars.checked ? (characters += characterSets.lowercase) : "";
+    uppercaseChars.checked ? (characters += characterSets.uppercase) : "";
+    numberChars.checked ? (characters += characterSets.numbers) : "";
+    symbolChars.checked ? (characters += characterSets.symbols) : "";
 
     document.getElementById("password").value = generatePassword(sliderInput.value, characters);
-};
-
-// hasDuplicateAdjacentCharacters checks if the current character is the same as the next.
-const hasDuplicateAdjacentCharacters = (string) => {
-    for (let i = 0; i < string.length - 1; i++) {
-        if (string[i] === string[i + 1]) {
-            return true;
-        }
-    }
-
-    return false;
 };
 
 // generatePassword generates a random password of a specified length.
@@ -64,10 +50,6 @@ const generatePassword = (length, characters) => {
             (randomNumber / 0x100000000) * characters.length,
         );
         password += characters[randomNumber];
-    }
-
-    if (hasDuplicateAdjacentCharacters(password)) {
-        password = generatePassword(length, characters);
     }
 
     return password;
@@ -98,7 +80,7 @@ generateBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("load", () => {
-    document.getElementById("password").value = generatePassword(sliderInput.value, Object.entries(character_sets).map(([k, v]) => `${v}`).join(''));
+    document.getElementById("password").value = generatePassword(sliderInput.value, Object.entries(characterSets).map(([k, v]) => `${v}`).join(''));
     updateSliderOutput();
 });
 

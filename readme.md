@@ -1,4 +1,4 @@
-# mkpasswd.tk
+# mkpasswd
 
 ## Online random password generator.
 
